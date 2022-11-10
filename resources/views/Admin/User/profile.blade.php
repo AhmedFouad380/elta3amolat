@@ -28,10 +28,10 @@
                             <div class="col-xl-12">
                                 <div class="kt-section__body">
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">@if(Request::segment(1) == 'ar') صورة الشخصية  @else  Profile Image  @endif</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">@if(Request::segment(1) == 'ar') الصورة الشخصية  @else  Profile Image  @endif</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_1" style="background-image: url({{asset('Upload/User/'.$User->img)}}) !important;">
-                                                <div class="image-input-wrapper"></div>
+                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_1">
+                                                <div class="image-input-wrapper" style="background-image:url('{{asset('/Upload/User/'.$User->img)}}')" ></div>
                                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                                     <i class="fa fa-pen icon-sm text-muted"></i>
                                                     <input type="file" name="logo" accept=".png, .jpg, .jpeg" />

@@ -99,6 +99,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
+                            <th class="center" >{{__('lang.image')}} </th>
                             <th>{{__('lang.Users_Name')}} </th>
                             <th>{{__('lang.Users_mail')}} </th>
                             <th>{{__('lang.Users_Mobile')}} </th>
@@ -117,16 +118,19 @@
                                         <span></span>
                                     </label>
                                 </td>
-                                <td>
-                                    <div class="kt-user-card-v2">
+                                <td class="center" >
                                         @if($User->img)
                                             <div class="kt-user-card-v2__pic">
-                                                <img src="{{asset('Upload/User/'.$User->img)}}" class="m-img-rounded kt-marginless" width="75px" alt="photo">
+                                                <img src="{{asset('Upload/User/'.$User->img)}}" class="m-img-rounded kt-marginless img-thumbnail" width="75px" alt="photo">
                                             </div>
                                         @endif
-                                            <a  class="kt-user-card-v2__email kt-link"href="/viewProfile/{{$User->id}}">
-                                                {{$User->name}}
-                                            </a>
+
+                                </td>
+                                <td>
+                                    <div class="kt-user-card-v2">
+                                        <a  class="kt-user-card-v2__email kt-link" href="/viewProfile/{{$User->id}}">
+                                            {{$User->name}}
+                                        </a>
                                     </div>
                                 </td>
                                 <td>{{$User->email}}</td>
