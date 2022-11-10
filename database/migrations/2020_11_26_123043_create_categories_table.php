@@ -18,6 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->integer('type');
             $table->integer('sub_id');
+            $table->string('network_name')->nullable();
+            $table->string('mac_address')->nullable();
             $table->timestamps();
         });
     }

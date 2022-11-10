@@ -16,6 +16,7 @@ class CreateInboxExplansTable extends Migration
         Schema::create('inbox_explans', function (Blueprint $table) {
             $table->id();
             $table->integer('type');
+            $table->integer('inbox_id');
             $table->bigInteger('sender_id');
             $table->bigInteger('reciver_id');
             $table->bigInteger('third_party')->nullable();

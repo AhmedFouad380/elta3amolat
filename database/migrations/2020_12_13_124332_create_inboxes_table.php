@@ -25,7 +25,9 @@ class CreateInboxesTable extends Migration
             $table->longText('letter');
             $table->integer('is_urgent');
             $table->integer('is_secret');
-            $table->integer('is_archive')->default(0);
+            $table->integer('is_archive_reciver')->default(0);
+            $table->integer('is_confirm')->nullable();
+            $table->integer('is_read')->default(0);
             $table->timestamps();
         });
     }
