@@ -15,8 +15,12 @@ class CreateInboxGroupMembersTable extends Migration
     {
         Schema::create('inbox_group_members', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('group_id');
-            $table->bigInteger('user_id');
+//            $table->bigInteger('group_id');
+            $table->foreignId('group_id')->unsigned()->references('id')->on('inbox_groups')->onDelete('cascade');
+
+//            $table->bigInteger('user_id');
+            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -16,8 +16,10 @@ class CreateUserAttachmentsTable extends Migration
         Schema::create('user_attachments', function (Blueprint $table) {
             $table->id();
             $table->string('file');
-            $table->integer('cat_id');
-            $table->integer('user_id');
+//            $table->integer('cat_id');
+            $table->foreignId('cat_id')->unsigned()->references('id')->on('attachment_categories')->onDelete('restrict');
+//            $table->integer('user_id');
+            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

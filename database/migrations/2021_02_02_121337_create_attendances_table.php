@@ -15,9 +15,7 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('fpuid')->on('users')->onDelete('cascade');
-
+            $table->foreignId('user_id')->unsigned()->references('fpuid')->on('users')->onDelete('cascade');
             $table->date('check_date');
             $table->time('check_time')->nullable();
             $table->string('image')->nullable();

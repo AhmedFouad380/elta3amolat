@@ -18,10 +18,13 @@ class CreateJobsTable extends Migration
             $table->string('name');
             $table->integer('job_num')->unique()->nullable();
             $table->longText('job_description')->nullable();
-            $table->integer('category_id');
-            $table->integer('job_type');
+//            $table->integer('category_id');
+            $table->foreignId('category_id')->unsigned()->references('id')->on('categories')->onDelete('cascade');
+//            $table->integer('job_type');
+            $table->foreignId('job_type')->unsigned()->references('id')->on('job_types')->onDelete('cascade');
+
             $table->integer('job_degree');
-            $table->integer('job_role');
+            $table->integer('job_role'); //?
             $table->timestamps();
         });
     }

@@ -15,7 +15,9 @@ class CreateInboxAttachmentsTable extends Migration
     {
         Schema::create('inbox_attachments', function (Blueprint $table) {
             $table->id();
-            $table->integer('inbox_id');
+//            $table->integer('inbox_id');
+            $table->foreignId('inbox_id')->unsigned()->references('id')->on('inboxes')->onDelete('restrict');
+
             $table->integer('file');
             $table->timestamps();
         });

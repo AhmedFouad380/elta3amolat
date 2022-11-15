@@ -15,13 +15,12 @@ class CreateTempAttendancesTable extends Migration
     {
         Schema::create('temp_attendances', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->date('check_date');
             $table->time('check_in_time')->nullable();
             $table->time('check_out_time')->nullable();
             $table->string('notes')->nullable();
-            $table->string('shift')->nullable();
+            $table->string('shift')->nullable(); //?
             $table->timestamps();
         });
     }

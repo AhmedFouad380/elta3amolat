@@ -17,10 +17,13 @@ class CreateInboxesTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('type');
-            $table->integer('type_id');
-            $table->integer('attach_type_id');
-            $table->integer('sender_id');
-            $table->integer('reciver_id');
+//            $table->integer('type_id');
+            $table->foreignId('type_id')->unsigned()->nullable()->references('id')->on('inbox_types')->onDelete('restrict');
+//            $table->integer('attach_type_id');
+            $table->foreignId('attach_type_id')->unsigned()->references('id')->on('attachment_categories')->onDelete('restrict');
+
+            $table->integer('sender_id'); //?
+            $table->integer('reciver_id'); //?
             $table->longText('description');
             $table->longText('letter');
             $table->integer('is_urgent');
