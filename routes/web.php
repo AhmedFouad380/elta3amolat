@@ -237,9 +237,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/settings/AttachmentCategory', 'Admin\AttachmentCategoryController@index');
     Route::get('/Edit_AttachmentCategory', 'Admin\AttachmentCategoryController@edit');
 
+//CategoryUnits
     Route::get('/settings/CategoryUnitsSearch', 'Admin\CategoryUnitsController@Search');
     Route::get('/settings/CategoryUnits', 'Admin\CategoryUnitsController@index');
-    Route::get('/Edit_CategoryUnits', 'Admin\CategoryUnitsController@edit');
+    Route::get('/copanel/CategoryUnits-datatable', 'Admin\CategoryUnitsController@datatable')->name('CategoryUnitsDatatable');
+    Route::get('/Edit_CategoryUnits/{id}', 'Admin\CategoryUnitsController@edit');
+    Route::get('/buttons_CategoryUnits', function (){
+        return view('Admin.CategoryUnits.buttons');
+    });
 
     Route::get('/copanel/Setting', 'Admin\SettingController@index');
     Route::get('/Edit_Setting', 'Admin\SettingController@edit');

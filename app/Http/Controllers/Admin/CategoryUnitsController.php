@@ -5,12 +5,41 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CategoryUnits;
+use Yajra\DataTables\DataTables;
+
 class CategoryUnitsController extends Controller
 {
     public function index(){
 
         $CategoryUnits = CategoryUnits::OrderBy('id','desc')->paginate(10);
         return view('Admin.CategoryUnits.index',compact('CategoryUnits'));
+
+    }
+
+    public function datatable(Request $request)
+    {
+        $data = CategoryUnits::orderBy('id', 'desc');
+
+        return DataTables::of($data)
+            ->addColumn('checkbox', function ($row) {
+                $checkbox = '';
+                $checkbox .= '  <label class="checkbox checkbox-single">
+                                        <input type="checkbox" value="'.$row->id.'" class="checkable" name="check_delete[]"/>
+                                        <span></span>
+                                    </label>
+                                ';
+                return $checkbox;
+            })
+
+            ->addColumn('actions', function ($row) {
+                $actions = ' <a href="' . url("Edit_CategoryUnits/" . $row->id) . '" class="btn btn-success"><i class="fa fa-pencil-alt"></i>  </a>';
+                return $actions;
+
+            })
+
+
+            ->rawColumns(['actions', 'checkbox' ])
+            ->make();
 
     }
     public function Search(Request $request){
