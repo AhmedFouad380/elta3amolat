@@ -14,11 +14,10 @@ class UpdateTableInbox extends Migration
     public function up()
     {
         Schema::table('inboxes', function (Blueprint $table) {
-            $table->renameColumn('is_archive', 'is_archive_reciver');
             $table->integer('is_archive_sender')->nullable()->after('is_archive_reciver');
             $table->date('date')->nullable()->after('is_confirm');
             $table->bigInteger('letter_num')->nullable()->after('date');
-            $table->bigInteger('assignee_id')->nullable()->after('reciver_id');
+            $table->bigInteger('assignee_id')->nullable()->after('reciver_id'); //?
             $table->bigInteger('third_party_id')->nullable()->after('sender_id');
         });
     }

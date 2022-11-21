@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +13,6 @@
 
 use App\User;
 
-Route::get('/', function () {
-    return view('layout.layout');
-});
 
 Auth::routes();
 Route::group(['middleware' => ['Auth']], function () {
@@ -156,30 +153,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/Edit_User_notation', 'Admin\UserController@Edit_User_notation');
 
     Route::get('/resources/UserAttachment/{id}', 'Admin\UserAttachmentController@index');
-    Route::get('/changeDate',function (){
+    Route::get('/changeDate', 'Admin\UserController@changeDate');
+    Route::get('/', 'Admin\UserController@admin_index');
 
-        $data = User::orderBy('id','desc')->get();
-        foreach($data as $User){
-            $Year =  \Carbon\Carbon::parse($User->start_contract_date)->format('Y');
-            $month =  \Carbon\Carbon::parse($User->start_contract_date)->format('m');
-            $day =  \Carbon\Carbon::parse($User->start_contract_date)->format('d');
-            $explode =  explode('-',$User->start_contract_date);
-
-            $date = $Year.'-'. $month.'-'.$day;
-            $User->start_contract_date=$date;
-            $User->save();
-        }
-    });
-    Route::get('/', function () {
-
-
-        $data = User::
-        selectRaw('year(start_job_date) year, count(id) data')
-            ->groupBy('year')
-            ->orderBy('year')
-            ->get();
-        return view('Admin.index',compact('data'));
-    });
 
     Route::get('/settings', function () {
         return view('Admin.settings');

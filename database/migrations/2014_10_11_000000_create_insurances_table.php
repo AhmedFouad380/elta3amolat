@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateUserTable extends Migration
+class CreateInsurancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class UpdateUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('groups_id')->nullable()->after('isActive');
+        Schema::create('insurances', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
-
     }
 
     /**
@@ -26,6 +27,6 @@ class UpdateUserTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('insurances');
     }
 }

@@ -96,7 +96,7 @@
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
-						<a href="index.html" class="brand-logo">
+						<a href="/" class="brand-logo">
 							<img alt="Logo" src="{{asset('/Upload')}}/{{$Sett->logo}}" style="width:150px;" />
 						</a>
 						<!--end::Logo-->

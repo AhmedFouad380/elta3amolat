@@ -22,9 +22,12 @@ class CreateAskPermissionsTable extends Migration
             $table->string('description');
             $table->date('request_date');
             $table->enum('status',['accepted','declined','notyet'])->default('notyet');
-            $table->bigInteger('user_id');
-            $table->bigInteger('manager_id');
-            $table->bigInteger('job_id');
+//            $table->bigInteger('user_id');
+            $table->foreignId('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
+
+            $table->bigInteger('manager_id'); //?
+//            $table->bigInteger('job_id');
+            $table->foreignId('job_id')->unsigned()->references('id')->on('jobs')->onDelete('restrict');
             $table->timestamps();
         });
     }

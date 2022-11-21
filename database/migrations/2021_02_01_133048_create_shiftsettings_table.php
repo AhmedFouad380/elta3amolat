@@ -15,8 +15,9 @@ class CreateShiftsettingsTable extends Migration
     {
         Schema::create('shiftsettings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('shift_id')->unsigned();
-            $table->foreign('shift_id')->references('id')->on('shifts')->onDelete('cascade');
+//            $table->bigInteger('shift_id')->unsigned();
+            $table->foreignId('shift_id')->unsigned()->references('id')->on('shifts')->onDelete('restrict');
+
             $table->string('day');
             $table->time('time_attendance')->nullable();
             $table->time('start_attendance')->nullable();

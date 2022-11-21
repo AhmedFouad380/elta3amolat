@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-//            $table->integer('user_id')->nullable();
-            $table->foreignId('user_id')->unsigned()->nullable()->references('id')->on('users')->onDelete('cascade');
-            $table->string('ip_address');
-            $table->text('description')->nullable();
+            $table->string('name');
+            $table->integer('type');
+            $table->integer('sub_id');
+            $table->string('network_name')->nullable();
+            $table->string('mac_address')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logs');
+        Schema::dropIfExists('categories');
     }
 }

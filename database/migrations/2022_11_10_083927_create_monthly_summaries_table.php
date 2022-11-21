@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateMonthlySummariesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('monthly_summaries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('type');
-            $table->integer('sub_id');
+            $table->string('with')->nullable();
+            $table->string('without')->nullable();
+            $table->string('total')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('monthly_summaries');
     }
 }

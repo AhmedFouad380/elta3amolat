@@ -15,11 +15,8 @@ class CreateEmpsShiftsTable extends Migration
     {
         Schema::create('emps_shifts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('emp_id')->unsigned();
-            $table->foreign('emp_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('shift_id')->unsigned();
-            $table->foreign('shift_id')->references('id')->on('shifts')->onDelete('cascade');
-
+            $table->foreignId('emp_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('shift_id')->unsigned()->references('id')->on('shifts')->onDelete('cascade');
             $table->timestamps();
         });
     }
