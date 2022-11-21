@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Log;
+use App\UserRole;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class LogController extends Controller
 {
@@ -15,6 +17,32 @@ class LogController extends Controller
 
     }
 
+    public function datatable(Request $request)
+    {
+        $data = Log::orderBy('id', 'desc');
+
+        return DataTables::of($data)
+            ->addColumn('checkbox', function ($row) {
+                $checkbox = '';
+                $checkbox .= '  <label class="checkbox checkbox-single">
+                                        <input type="checkbox" value="'.$row->id.'" class="checkable" name="check_delete[]"/>
+                                        <span></span>
+                                    </label>
+                                ';
+                return $checkbox;
+            })
+            ->addColumn('name', function ($row) {
+                $actions = $row->User->name;
+                return $actions;
+
+            })
+
+
+
+            ->rawColumns([ 'checkbox' ])
+            ->make();
+
+    }
 
     public function store(Request $request)
     {

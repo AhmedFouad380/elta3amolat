@@ -60,7 +60,7 @@
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">@if(Request::segment(1) == 'ar') صورة التوقيع  @else  type  @endif</label>
                     <div class="col-lg-6 col-xl-6">
@@ -70,7 +70,7 @@
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">@if(Request::segment(1) == 'ar') صورة التأشير  @else  type  @endif</label>
                     <div class="col-lg-6 col-xl-6">

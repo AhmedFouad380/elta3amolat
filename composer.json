@@ -23,7 +23,8 @@
         "maatwebsite/excel": "^3.1",
         "mcamara/laravel-localization": "^1.6",
         "milon/barcode": "^7.0",
-        "nahidulhasan/html2pdf": "^1.4"
+        "nahidulhasan/html2pdf": "^1.4",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

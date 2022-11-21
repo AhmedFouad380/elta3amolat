@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('title')
-    {{__('lang.Nationality_Edit')}}
+    {{__('lang.settings_Title')}}
 @endsection
 @section('css')
     <link href="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -31,13 +31,12 @@
                             <li class="breadcrumb-item">
                                 <a href="{{url('copanel')}}" class="text-muted">{{trans('lang.Control')}}</a>
                             </li>
-                                                        <li class="breadcrumb-item">
-                                                            <a href="{{url('copanel/UserRole')}}" class="text-muted">    {{__('lang.Control_Permissions')}}
-                                                            </a>
-                                                        </li>
+                            {{--                            <li class="breadcrumb-item">--}}
+                            {{--                                <a href="" class="text-muted">Profile</a>--}}
+                            {{--                            </li>--}}
 
                             <li class="breadcrumb-item">
-                                <h5 class="text-dark font-weight-bold my-1 mr-5 ">{{__('lang.Nationality_Edit')}}</h5>
+                                <h5 class="text-dark font-weight-bold my-1 mr-5 ">{{trans('lang.settings_Title')}}</h5>
                             </li>
                         </ul>
 
@@ -49,15 +48,15 @@
         </div>
 
         <div class="container">
-            <br><br><br>            <!--begin::Card-->
+<br><br><br>            <!--begin::Card-->
             <div class="card card-custom gutter-b">
                 <div class="card-header flex-wrap py-3">
                     <div class="card-title">
-                        <h3 class="card-label">{{__('lang.Nationality_Edit')}}
+                        <h3 class="card-label">{{__('lang.settings_Title')}}
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{url('/Update_UserRole')}}">
+                    <form method="post" action="/Update_UserRole">
                         @csrf
                         <div class="col-xl-12">
                             <div class="kt-section__body">
@@ -252,52 +251,52 @@
     <!-- /.modal -->
 
 @section('js')
-    {{--    <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>--}}
-    {{--    <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/basic.js')}}"></script>--}}
-    {{--    <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>--}}
-    {{--    <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/dropify.min.js')}}"></script>--}}
-    {{--    <script src="{{asset('dashboard/assets/js/pages/crud/file-upload/image-input.js')}}"></script>--}}
-    <script>
-        // Replace the <textarea id="editor1"> with a CKEditor 4
-        // instance, using default configuration.
+{{--    <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>--}}
+{{--    <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/basic.js')}}"></script>--}}
+{{--    <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/sweetalert2.js')}}"></script>--}}
+{{--    <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/dropify.min.js')}}"></script>--}}
+{{--    <script src="{{asset('dashboard/assets/js/pages/crud/file-upload/image-input.js')}}"></script>--}}
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
 
-        function transactionsFunction1() {
-            var x = document.getElementById("transactionsBody1");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+    function transactionsFunction1() {
+        var x = document.getElementById("transactionsBody1");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
         }
+    }
 
-        function resourcesFunction1() {
-            var x = document.getElementById("resourcesBody1");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+    function resourcesFunction1() {
+        var x = document.getElementById("resourcesBody1");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
         }
+    }
 
-        function copanelFunction1() {
-            var x = document.getElementById("copanelBody1");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+    function copanelFunction1() {
+        var x = document.getElementById("copanelBody1");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
         }
+    }
 
-        function settingsFunction1() {
-            var x = document.getElementById("settingsBody1");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+    function settingsFunction1() {
+        var x = document.getElementById("settingsBody1");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
         }
+    }
 
-    </script>
+</script>
 
 
 @endsection

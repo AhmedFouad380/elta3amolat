@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Language;
+use App\UserRole;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class LanguageController extends Controller
 {
@@ -14,12 +16,33 @@ class LanguageController extends Controller
         return view('Admin.Language.index',compact('Languages'));
 
     }
-    public function Search(Request $request){
 
-        $Languages = Language::where('ar_name','like','%'.$request->search.'%')->orwhere('en_name','like','%'.$request->search.'%')->paginate(50);
-        return view('Admin.Language.index',compact('Languages'));
+    public function datatable(Request $request)
+    {
+        $data = Language::orderBy('id', 'desc');
+        return DataTables::of($data)
+            ->addColumn('checkbox', function ($row) {
+                $checkbox = '';
+                $checkbox .= '  <label class="checkbox checkbox-single">
+                                        <input type="checkbox" value="'.$row->id.'" class="checkable" name="check_delete[]"/>
+                                        <span></span>
+                                    </label>
+                                ';
+                return $checkbox;
+            })
+
+            ->addColumn('actions', function ($row) {
+                $actions = ' <a href="' . url("Edit_Language/" . $row->id) . '" class="btn btn-success"><i class="fa fa-pencil-alt"></i>  </a>';
+                return $actions;
+
+            })
+
+
+            ->rawColumns(['actions', 'checkbox' ])
+            ->make();
 
     }
+
 
 
     public function store(Request $request)
@@ -83,9 +106,9 @@ class LanguageController extends Controller
             $Language->save();
 
         } catch (Exception $e) {
-            return redirect('/Languages')->with('error_message', 'هناك خطأ ما فى عملية الاضافة');
+            return redirect('copanel/Languagess')->with('error_message', 'هناك خطأ ما فى عملية الاضافة');
         }
-        return redirect()->back()->with('message', 'Success');
+         return redirect('copanel/Languages')->with('message', 'Success');
     }
 
     public function logout(){

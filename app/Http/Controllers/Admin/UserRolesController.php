@@ -6,16 +6,44 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\UserRole;
 use App\User;
+use Yajra\DataTables\DataTables;
+
 class   UserRolesController extends Controller
 {
     public function index(){
 
-    $data = UserRole::OrderBy('id','desc')->paginate(10);
 
-    return view('Admin.UserRole.index',compact('data'));
+    return view('Admin.UserRole.index');
 
 }
 
+
+    public function datatable(Request $request)
+    {
+        $data = UserRole::orderBy('id', 'desc');
+
+        return DataTables::of($data)
+            ->addColumn('checkbox', function ($row) {
+                $checkbox = '';
+                $checkbox .= '  <label class="checkbox checkbox-single">
+                                        <input type="checkbox" value="'.$row->id.'" class="checkable" name="check_delete[]"/>
+                                        <span></span>
+                                    </label>
+                                ';
+                return $checkbox;
+            })
+
+            ->addColumn('actions', function ($row) {
+                $actions = ' <a href="' . url("Edit_UserRole/" . $row->id) . '" class="btn btn-success"><i class="fa fa-pencil-alt"></i>  </a>';
+                return $actions;
+
+            })
+
+
+            ->rawColumns(['actions', 'checkbox' ])
+            ->make();
+
+    }
 
     public function store(Request $request)
 {
@@ -86,9 +114,9 @@ class   UserRolesController extends Controller
 }
 
 
-    public function edit(Request $request)
+    public function edit($id)
 {
-    $data =UserRole::find($request->id);
+    $data =UserRole::find($id);
     return view('Admin.UserRole.model',compact('data'));
 }
 
@@ -151,7 +179,7 @@ class   UserRolesController extends Controller
     } catch (\Exception $e) {
         return back()->with('error_message', 'هناك خطأ ما فى عملية الاضافة');
     }
-    return redirect()->back()->with('message', 'Success');
+    return redirect('copanel/UserRole')->with('message', 'Success');
 }
     //
 }

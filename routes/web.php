@@ -269,14 +269,26 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get('/Edit_Setting', 'Admin\SettingController@edit');
 
     Route::get('/copanel/UserRole', 'Admin\UserRolesController@index');
-    Route::get('/Edit_UserRole', 'Admin\UserRolesController@edit');
+    Route::get('/copanel/UserRole-datatable', 'Admin\UserRolesController@datatable')->name('UserRoleDatatable');
+    Route::get('/Edit_UserRole/{id}', 'Admin\UserRolesController@edit');
+    Route::get('/buttons_UserRole', function (){
+        return view('Admin.UserRole.buttons');
+    });
 
-    Route::get('/copanel/Language/Search', 'Admin\LanguageController@Search');
     Route::get('/copanel/Languages', 'Admin\LanguageController@index');
-    Route::get('/Edit_Language', 'Admin\LanguageController@edit');
+    Route::get('/copanel/Language-datatable', 'Admin\LanguageController@datatable')->name('LanguageDatatable');
+    Route::get('/Edit_Language/{id}', 'Admin\LanguageController@edit');
+    Route::get('/buttons_Language', function (){
+        return view('Admin.Language.buttons');
+    });
 
     Route::get('/copanel/Logs', 'Admin\LogController@index');
     Route::get('/Edit_Log', 'Admin\LogController@edit');
+    Route::get('/copanel/Logs-datatable', 'Admin\LogController@datatable')->name('LogsDatatable');
+    Route::get('/Edit_Logs/{id}', 'Admin\LogController@edit');
+    Route::get('/buttons_Logs', function (){
+        return view('Admin.Log.buttons');
+    });
 
     Route::get('/settings/inboxProcessType', 'Admin\InboxProcessTypeController@index');
     Route::get('/settings/inboxProcessTypeSearch', 'Admin\InboxProcessTypeController@Search');
