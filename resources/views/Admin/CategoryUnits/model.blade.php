@@ -32,16 +32,14 @@
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                             <li class="breadcrumb-item">
-                                <a href="{{url('copanel')}}" class="text-muted">{{trans('lang.Control')}}</a>
+                                <a href="{{url('settings')}}" class="text-muted">{{trans('lang.Settings')}}</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{url('copanel/UserRole')}}"
-                                   class="text-muted">    {{__('lang.Control_Permissions')}}
-                                </a>
+                                <a href="{{url('settings/HRSetting')}}" class="text-muted">@if(Request::segment(1) == 'ar') اعدادات الهيكل الاداري @else HR Setting  @endif</a>
                             </li>
 
                             <li class="breadcrumb-item">
-                                <h5 class="text-dark font-weight-bold my-1 mr-5 ">{{__('lang.Nationality_Edit')}}</h5>
+                                <h5 class="text-dark font-weight-bold my-1 mr-5 ">{{__('lang.Edit')}}</h5>
                             </li>
                         </ul>
 

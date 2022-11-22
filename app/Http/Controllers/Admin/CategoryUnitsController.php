@@ -19,7 +19,6 @@ class CategoryUnitsController extends Controller
     public function datatable(Request $request)
     {
         $data = CategoryUnits::orderBy('id', 'desc');
-
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
                 $checkbox = '';
@@ -30,18 +29,16 @@ class CategoryUnitsController extends Controller
                                 ';
                 return $checkbox;
             })
-
             ->addColumn('actions', function ($row) {
                 $actions = ' <a href="' . url("Edit_CategoryUnits/" . $row->id) . '" class="btn btn-success"><i class="fa fa-pencil-alt"></i>  </a>';
                 return $actions;
 
             })
-
-
             ->rawColumns(['actions', 'checkbox' ])
             ->make();
 
     }
+
     public function Search(Request $request){
 
         $CategoryUnits = CategoryUnits::where('name','like','%'.$request->search.'%')->paginate(50);
@@ -100,6 +97,6 @@ class CategoryUnitsController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->with('error_message', 'هناك خطأ ما فى عملية الاضافة');
         }
-        return redirect()->back()->with('message', 'Success');
+        return redirect(url('settings/CategoryUnits'))->with('message', 'Success');
     }
 }

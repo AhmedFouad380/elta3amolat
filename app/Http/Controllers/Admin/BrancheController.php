@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Branch;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class BrancheController extends Controller
 {
@@ -15,12 +16,34 @@ class BrancheController extends Controller
 
     }
 
+    public function datatable(Request $request)
+    {
+        $data = Branch::orderBy('id', 'desc');
+        return DataTables::of($data)
+            ->addColumn('checkbox', function ($row) {
+                $checkbox = '';
+                $checkbox .= '  <label class="checkbox checkbox-single">
+                                        <input type="checkbox" value="'.$row->id.'" class="checkable" name="check_delete[]"/>
+                                        <span></span>
+                                    </label>
+                                ';
+                return $checkbox;
+            })
+            ->addColumn('actions', function ($row) {
+                $actions = ' <a href="' . url("Edit_Branch/" . $row->id) . '" class="btn btn-success"><i class="fa fa-pencil-alt"></i>  </a>';
+                return $actions;
+            })
+            ->rawColumns(['actions', 'checkbox' ])
+            ->make();
+    }
+
     public function Search(Request $request){
 
         $Banks = Branch::OrderBy('id','desc')->where('name','like','%'.$request->search.'%')->paginate(50);
         return view('Admin.Branch.index',compact('Banks'));
-
     }
+
+
     public function store(Request $request)
     {
 
@@ -76,6 +99,6 @@ class BrancheController extends Controller
         } catch (Exception $e) {
             return redirect('/users')->with('error_message', 'هناك خطأ ما فى عملية الاضافة');
         }
-        return redirect()->back()->with('message', 'Success');
+        return redirect(url('settings/Branches'))->with('message', 'Success');
     }
 }

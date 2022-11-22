@@ -1,14 +1,11 @@
 @extends('layout.layout')
-
 @section('title')
     {{__('lang.categoryunits_Title')}}
 @endsection
 @section('css')
     <link href="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
 @endsection
-
 @section('content')
-
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
@@ -24,16 +21,12 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-
                         <!--end::Page Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                             <li class="breadcrumb-item">
                                 <a href="{{url('settings')}}" class="text-muted">{{trans('lang.Settings')}}</a>
                             </li>
-                            {{--                            <li class="breadcrumb-item">--}}
-                            {{--                                <a href="" class="text-muted">Profile</a>--}}
-                            {{--                            </li>--}}
                             <li class="breadcrumb-item">
                                 <a href="{{url('settings/HRSetting')}}" class="text-muted">@if(Request::segment(1) == 'ar') اعدادات الهيكل الاداري @else HR Setting  @endif</a>
                             </li>
@@ -48,7 +41,6 @@
                 </div>
             </div>
         </div>
-
         <!--begin::Container-->
         <div class="container">
             <br>
@@ -80,10 +72,6 @@
         </div>
         <!--end::Container-->
     </div>
-
-
-
-
     <div class="modal fade" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -98,15 +86,12 @@
                         @csrf
                         <div class="col-xl-12">
                             <div class="kt-section__body">
-
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">{{__('lang.categoryunits_Name')}}</label>
                                     <div class="col-lg-9 col-xl-9">
                                         <input class="form-control" type="text" name="name" value="">
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -119,27 +104,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <!-- /.modal -->
-    <div class="modal fade bs-edit-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content card card-outline-info">
-                <div class="modal-header card-header">
-                    <h3 class="modal-title" id="myLargeModalLabel">{{__('lang.categoryunits_Edit')}}</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
 @section('js')
     <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/basic.js')}}"></script>
