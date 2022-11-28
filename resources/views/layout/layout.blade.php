@@ -1283,7 +1283,7 @@
                                 </div>
                             </div>
                             <div class="navi-text">
-                                <div class="font-weight-bold"> الاعدادات</div>
+                                <div class="font-weight-bold"> {{trans('lang.profile')}}</div>
                                 <div class="text-muted">تغير كلمة المرور و الاعدادات
                                     {{--								<span class="label label-light-danger label-inline font-weight-bold"></span>--}}
                                 </div>
